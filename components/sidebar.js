@@ -1,7 +1,6 @@
 import SidebarItem from "./sidebarItem";
 
 export default function Sidebar() {
-  
   // Turn these into objects eventually
   const navigationOptions = [
     "home",
@@ -14,10 +13,10 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col h-max w-max">
-      {navigationOptions.map((navOptionsItem) => {
-        <SidebarItem navSection={navOptionsItem}></SidebarItem>
-      })}
+    <div className="flex h-max w-max flex-col">
+      {navigationOptions.map((navOptionsItem, index) => (
+        <SidebarItem key={index} navSection={navOptionsItem}></SidebarItem>
+      ))}
     </div>
   );
 }

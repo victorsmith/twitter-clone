@@ -3,9 +3,10 @@ import Layout from "../components/layout";
 export default function Home() {
   return(
     <Layout>
-      <h1>Search Bar Here</h1>
-      <h1>New Tweet Component Here</h1>
-      <h3>Feed here and below</h3>
+      <h1>Home Page</h1>
+      <h2>Search Bar Here</h2>
+      <h2>New Tweet Component Here</h2>
+      <h2>Feed here and below</h2>
     </Layout>
   )
 }
