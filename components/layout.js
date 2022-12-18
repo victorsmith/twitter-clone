@@ -4,13 +4,12 @@ export default function Layout({ children }) {
   return (
     <div className="flex h-screen w-screen flex-row">
       {/* Navigation Bar */}
-      <div className="basis-2z bg-sky-400 sm:basis-1/6">
-        <h1>Navigation Bar</h1>
+      <div className="flex flex-col min-h-screen align-center justify-center bg-sky-400 sm:basis-1/6">
         <Sidebar></Sidebar>
       </div>
 
       {/* Main Content */}
-      <div className="">
+      <div>
         <main>{children}</main>
       </div>
     </div>

@@ -1,12 +1,30 @@
 import Layout from "../components/layout";
-
+import NewPost from "../components/newPost";
+import SearchBar from "../components/searchBar";
 export default function Home() {
-  return(
+  return (
     <Layout>
       <h1>Home Page</h1>
-      <h2>Search Bar Here</h2>
-      <h2>New Tweet Component Here</h2>
+      <SearchBar></SearchBar>
+      <br></br>
+
+      <NewPost></NewPost>
+
+      <br></br>
+
       <h2>Feed here and below</h2>
     </Layout>
-  )
+  );
+
+  async function getServerSideProps() {
+
+    const tweets = await fetch(path);
+
+    return {
+      props: {
+        tweets,
+      },
+    };
+  }
+
 }

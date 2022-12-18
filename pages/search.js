@@ -1,9 +1,9 @@
 import Layout from "../components/layout";
 
-export default function Messages() {
+export default function Search() {
   return (
     <Layout>
-      <h1>Messages Page</h1>
+      <h1>Search Page</h1>
     </Layout>
   );
 }

@@ -13,7 +13,8 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex h-max w-max flex-col">
+    <div className="align-center container mx-auto flex-1 flex-col justify-center p-2">
+      <h1>UglyTwitter</h1>
       {navigationOptions.map((navOptionsItem, index) => (
         <SidebarItem key={index} navSection={navOptionsItem}></SidebarItem>
       ))}
