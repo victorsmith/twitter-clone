@@ -1,10 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
+## How to run the app
 
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
@@ -12,23 +11,26 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Notes 
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### Done/ Done-ish:
+1. Home page
+2. Routing,
+3. Loging
+4. Posting new tweets
+5. Delete tweets
+6. API is done for the most part (except some PUT routes). I'm relatively happy with the API, considering the short time frame I had to work on it.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Broken / Bad / Missing:
+1. JWT token middleware. I tried to overcomplicate it using the NextJS internal server and that ended up biting me in the back side. Next time I'd render everything on the client side and use a session based Auth system (server side).
+2) Bugs galore. I didn't sleep at all last night, so I'm sure the code is riddled with bugs. Apologies if something doesn't work or make anysense.
+3) The UI is rough
+4) Several features missing. Unfortunatley, I bit off more than I could chew by choosing do a twitter clone in the time frame I had. I should have done a simple blog or something, and showed a small amount of high quality code.
+5) No tests, because no time
+6) No reply functionality on front end. Will implement over the break
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

@@ -10,7 +10,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const api = constants.apiBaseUrl;
-  console.log("ApiBaseUrl:", api);
+  // console.log("ApiBaseUrl:", api);
 
   const handleSubmit = async (event) => {
     setLoading(true);
@@ -24,7 +24,7 @@ export default function Login() {
     };
 
     const api = constants.apiBaseUrl;
-    console.log("ApiBaseUrl", api);
+    // console.log("ApiBaseUrl", api);
 
     const endpoint = `${api}/auth/login`;
     const options = {
@@ -32,7 +32,6 @@ export default function Login() {
       // Tell the server we're sending JSON.
       headers: {
         "Content-Type": "application/json",
-        // Authorization: jwt,
       },
       body: JSON.stringify({
         username: data.username,
@@ -41,22 +40,22 @@ export default function Login() {
     };
 
     const res = await fetch(endpoint, options);
-    console.log("Res (post tweet)", res);    
+    // console.log("Res (post tweet)");    
+    // console.log("Res (post tweet)", res);    
 
     if (res.ok) {
       const user = await res.json();
-      console.log("Log In Info", user);
+      // console.log("Log In Info", user);
       
       // Handle JWT
       if (user.token) {
+        localStorage.removeItem('token')
           setCookie("token", user.token);
-          localStorage.setItem('token', user.token);
-          // router.push("/");
+          console.log("Token", user.token.token);
+          localStorage.setItem('token', user.token.token);
+          router.push("/home");
         }
         
-      const checkLS = localStorage.getItem('token', user.token);
-      console.log('jwt org', user.token)
-      console.log('checkLS', checkLS)
     }
     event.target.username.value = "";
     event.target.password.value = "";
