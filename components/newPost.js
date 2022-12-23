@@ -43,15 +43,27 @@ export default function NewPost() {
 
     // Fetch all tweets
     const res = await fetch(endpoint, options);
-    console.log("Res (post tweet)", res)
+    console.log("Res (post tweet)", res);
+    event.target.tweet.value = "";
   };
 
   return (
-    <div className="flex flex-col">
-      <form onSubmit={handleSubmit} className="flex flex-col">
-        <label htmlFor="tweet">Tweet</label>
-        <input type="textarea" id="tweet" name="tweet" required />
-        <button type="submit">Tweet</button>
+    <div className="m-4 flex flex-col rounded-md bg-slate-800 p-4">
+      <form onSubmit={handleSubmit} className="flex space-x-4">
+        <input
+          type="textarea"
+          id="tweet"
+          placeholder="Input your tweet here..."
+          name="tweet"
+          required
+          className="basis-5/6 px-4"
+        />
+        <button
+          type="submit"
+          className="max-w-lg basis-1/6 rounded-lg bg-blue-500 p-2"
+        >
+          Tweet
+        </button>
       </form>
     </div>
   );

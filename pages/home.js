@@ -31,14 +31,13 @@ async function fetchData() {
 }
 
 export default function Home() {
-
   const [tweets, setTweets] = useState();
 
   useEffect(() => {
-    fetchData().then(data => {
-      setTweets(data)
-    })
-  })
+    fetchData().then((data) => {
+      setTweets(data);
+    });
+  });
 
   // useEffect(() => {
   //   console.log("HOME TT", tweets);
@@ -46,18 +45,13 @@ export default function Home() {
 
   return (
     <Layout>
-      <h1>Home Page</h1>
-      <SearchBar></SearchBar>
-      <br></br>
-
+      <div className="mx-4 my-3 flex flex-col rounded-md p-1">
+        <h1 className="font-mono text-xl font-bold">Welcome to Ugly Twitter</h1>
+      </div>
+      {/* <SearchBar></SearchBar> */}
       <NewPost></NewPost>
 
-
-      <br></br>
-
       <Feed tweets={tweets}></Feed>
-
-      
     </Layout>
   );
 }
