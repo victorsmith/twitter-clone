@@ -1,37 +1,24 @@
 import { NextResponse } from "next/server";
-import { getCookie, getCookies, setCookie } from "cookies-next";
 
 export function middleware(req) {
-  const pathname  = req.nextUrl.clone();
-  
-  // setCookie("hey", 'asasa');
-  // const token = getCookie("hey");
-  // const token = req.cookies.get('jwt');
-  const token = null;
-  const baseURL = "http://localhost:3000"
-  
-  
+  // const { pathname } = req.nextUrl;
+  const pathname = req.nextUrl;
+  const origin = pathname.origin;
 
-  // console.log("Cookies:", token)
-  // console.log("pathname", pathname)
+  console.log("Pathname MW", pathname);
+  console.log("Origin MW", origin);
 
-  // If token is not available in the cookies => redirect to login page
-  
-  // if (!pathname.href.includes("/auth") && !token ) {
-  //   console.log("No jwt");
-  //   return NextResponse.redirect(`${pathname.origin}/login`);
-  // }
-  
-  
-  // const token = req.cookies.token;
+  const token = req.cookies.get("token");
+  console.log("token MW", token);
 
-  // if (pathname.includes("/api")) {
-  //   return NextResponse.next();
-  // }
-  // // Check if token exists
-  // if (!pathname.includes("/auth") && !token) {
-  //   return NextResponse.redirect("/auth/login");
-  // } else if (pathname.includes("/auth") && token) {
-  //   return NextResponse.redirect("/");
-  // }
+  const loginRoute = `${origin}/login`
+  const homeRoute = `${origin}/home`
+
+  if (!pathname.href.includes("/login") && !token) {
+    console.log('a')
+    return NextResponse.redirect(loginRoute);
+  } else if (pathname.href.includes("/login") && token) {
+    console.log('b')
+    return NextResponse.redirect(homeRoute);
+  }
 }

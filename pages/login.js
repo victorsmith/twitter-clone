@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import constants from "../constants/constants";
+import Cookie from "js-cookie";
+import { setCookie } from "cookies-next";
 
 export default function Login() {
   const router = useRouter();
-  
-  const [loading, setLoading] = useState(false);
 
+  const [loading, setLoading] = useState(false);
 
   const api = constants.apiBaseUrl;
   console.log("ApiBaseUrl:", api);
@@ -18,30 +19,54 @@ export default function Login() {
 
     // Get data from the form.
     const data = {
-      first: event.target.username.value,
-      last: event.target.password.value,
+      username: event.target.username.value,
+      password: event.target.password.value,
     };
 
-    console.log("data", data);
+    const api = constants.apiBaseUrl;
+    console.log("ApiBaseUrl", api);
 
-    const res = await fetch(`${api}/auth/login`, {
+    const endpoint = `${api}/auth/login`;
+    const options = {
       method: "POST",
-      "Content-Type": "application/json",
+      // Tell the server we're sending JSON.
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: jwt,
+      },
       body: JSON.stringify({
         username: data.username,
         password: data.password,
       }),
-      
-    });
+    };
 
-    const user = await res.json();
-    console.log("User Info", user);
+    const res = await fetch(endpoint, options);
+    console.log("Res (post tweet)", res);    
+
+    if (res.ok) {
+      const user = await res.json();
+      console.log("Log In Info", user);
+      
+      // Handle JWT
+      if (user.token) {
+          setCookie("token", user.token);
+          localStorage.setItem('token', user.token);
+          // router.push("/");
+      }
+      
+      console.log('jwt org', user.token)
+    }
+    event.target.username.value = "";
+    event.target.password.value = "";
+    setLoading(false)
   };
 
-
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
-      <form onSubmit={handleSubmit}>
+    <>
+      <form
+        className="flex min-h-screen flex-col items-center justify-center"
+        onSubmit={handleSubmit}
+      >
         <label htmlFor="username">Username</label>
         <input type="text" id="username" name="username" required />
 
@@ -50,7 +75,6 @@ export default function Login() {
 
         <button type="submit">Submit</button>
       </form>
-    </div>
+    </>
   );
-
 }
