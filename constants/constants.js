@@ -1,4 +1,4 @@
-const config = {
+const constants = {
   apiBaseUrl: "http://localhost:4000",
 }
 

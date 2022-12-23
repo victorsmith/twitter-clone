@@ -1,9 +1,19 @@
 import Layout from "../components/layout";
 import NewPost from "../components/newPost";
 import SearchBar from "../components/searchBar";
+import { getCookie, getCookies, setCookie } from "cookies-next";
 import constants from "../constants/constants";
+import { useEffect } from "react";
 
 export default function Home({ tweets }) {
+
+  console.log("Tweets", tweets)
+  useEffect(() => {
+    setCookie("hey", "asasa"); 
+    // setCookie("jwt", "asasa"); 
+  })
+  
+
   return (
     <Layout>
       <h1>Home Page</h1>
@@ -22,7 +32,11 @@ export default function Home({ tweets }) {
     const path = constants.apiBaseUrl;
     console.log("ApiBaseUrl", path);
 
-    const tweets = await fetch(path);
+    // Fetch all tweets
+    const res = await fetch(`${path}/tweets/`);
+    const tweets = res.json();
+
+    console.log(tweets)
 
     return {
       props: {
