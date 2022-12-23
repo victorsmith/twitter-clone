@@ -23,7 +23,7 @@ export default function NewPost() {
   }, [tweets]);
 
   return (
-    <div>
+    <div className="m-4 flex flex-col rounded-md bg-slate-800 p-4">
       <form onSubmit={handleSubmit}>
         <label htmlFor="tweet"></label>
         <input
