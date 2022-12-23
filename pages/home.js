@@ -4,6 +4,7 @@ import SearchBar from "../components/searchBar";
 import { getCookie, getCookies, setCookie } from "cookies-next";
 import constants from "../constants/constants";
 import { useEffect, useState } from "react";
+import Feed from "../components/feed";
 
 async function fetchData() {
   const jwt =
@@ -34,13 +35,14 @@ export default function Home() {
   const [tweets, setTweets] = useState();
 
   useEffect(() => {
-    const data = fetchData()
-    setTweets(data)
+    fetchData().then(data => {
+      setTweets(data)
+    })
   })
 
-  useEffect(() => {
-    console.log("HOME TT", tweets);
-  })
+  // useEffect(() => {
+  //   console.log("HOME TT", tweets);
+  // })
 
   return (
     <Layout>
@@ -50,15 +52,12 @@ export default function Home() {
 
       <NewPost></NewPost>
 
-      <ul>
-        {tweets?.map((post, i) => (
-          <li key={i}>{post.content}</li>
-        ))}
-      </ul>
 
       <br></br>
 
-      <h2>Feed here and below</h2>
+      <Feed tweets={tweets}></Feed>
+
+      
     </Layout>
   );
 }
