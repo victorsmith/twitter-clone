@@ -52,9 +52,11 @@ export default function Login() {
           setCookie("token", user.token);
           localStorage.setItem('token', user.token);
           // router.push("/");
-      }
-      
+        }
+        
+      const checkLS = localStorage.getItem('token', user.token);
       console.log('jwt org', user.token)
+      console.log('checkLS', checkLS)
     }
     event.target.username.value = "";
     event.target.password.value = "";
