@@ -1,7 +1,9 @@
 import Layout from "../components/layout";
 import NewPost from "../components/newPost";
 import SearchBar from "../components/searchBar";
-export default function Home() {
+import constants from "../constants/constants";
+
+export default function Home({ tweets }) {
   return (
     <Layout>
       <h1>Home Page</h1>
@@ -17,6 +19,8 @@ export default function Home() {
   );
 
   async function getServerSideProps() {
+    const path = constants.apiBaseUrl;
+    console.log("ApiBaseUrl", path);
 
     const tweets = await fetch(path);
 
@@ -26,5 +30,4 @@ export default function Home() {
       },
     };
   }
-
 }
