@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import constants from "../../constants/constants";
+import constants from "../constants/constants";
 
 export default function Login() {
   const router = useRouter();
@@ -11,10 +11,18 @@ export default function Login() {
   const api = constants.apiBaseUrl;
   console.log("ApiBaseUrl:", api);
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (event) => {
     setLoading(true);
 
-    console.log("data", data)
+    event.preventDefault();
+
+    // Get data from the form.
+    const data = {
+      first: event.target.username.value,
+      last: event.target.password.value,
+    };
+
+    console.log("data", data);
 
     const res = await fetch(`${api}/auth/login`, {
       method: "POST",
@@ -23,6 +31,7 @@ export default function Login() {
         username: data.username,
         password: data.password,
       }),
+      
     });
 
     const user = await res.json();

@@ -8,16 +8,19 @@ export function middleware(req) {
   // const token = getCookie("hey");
   // const token = req.cookies.get('jwt');
   const token = null;
-  console.log("Cookies:", token)
-  console.log("pathname", pathname)
   const baseURL = "http://localhost:3000"
+  
+  
+
+  // console.log("Cookies:", token)
+  // console.log("pathname", pathname)
 
   // If token is not available in the cookies => redirect to login page
   
-  if (!pathname.href.includes("/auth") && !token ) {
-    console.log("No jwt");
-    return NextResponse.redirect(`${pathname.origin}/login`);
-  }
+  // if (!pathname.href.includes("/auth") && !token ) {
+  //   console.log("No jwt");
+  //   return NextResponse.redirect(`${pathname.origin}/login`);
+  // }
   
   
   // const token = req.cookies.token;
