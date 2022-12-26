@@ -30,6 +30,7 @@ export default function Login() {
     const options = {
       method: "POST",
       // Tell the server we're sending JSON.
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,18 +42,19 @@ export default function Login() {
 
     const res = await fetch(endpoint, options);
     // console.log("Res (post tweet)");    
-    // console.log("Res (post tweet)", res);    
+    console.log("Res (post tweet)", res);    
 
     if (res.ok) {
       const user = await res.json();
       // console.log("Log In Info", user);
       
       // Handle JWT
+      // FIXME: 
       if (user.token) {
-        localStorage.removeItem('token')
-          setCookie("token", user.token);
-          console.log("Token", user.token.token);
-          localStorage.setItem('token', user.token.token);
+        // localStorage.removeItem('token')
+          // setCookie("token", user.token);
+          // console.log("Token", user.token.token);
+          // localStorage.setItem('token', user.token.token);
           router.push("/home");
         }
         

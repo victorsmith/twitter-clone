@@ -73,7 +73,7 @@ export default function Tweet({ tweet }) {
   return (
     <div
       // onClick={routeToTweet}
-      className="m-4 flex flex-col rounded-md bg-slate-800 p-4 hover:bg-blue-400"
+      className="m-4 flex flex-col rounded-md bg-slate-800 p-4 hover:bg-red-400"
     >
       {/* Top Row */}
       <div className="flex grow flex-row space-x-3 align-middle">

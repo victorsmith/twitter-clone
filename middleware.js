@@ -9,7 +9,7 @@ export function middleware(req) {
   // console.log("Origin MW", origin);
 
   const token = req.cookies.get("token");
-  console.log("token MW", token);
+  // console.log("token MW", token);
   
   const loginRoute = `${origin}/login`
   const homeRoute = `${origin}/home`
