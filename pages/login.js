@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import constants from "../constants/constants";
-import Cookie from "js-cookie";
-import { setCookie } from "cookies-next";
+import Cookies from "js-cookie";
+import AppContext from "../components/AppContext";
 
 export default function Login() {
   const router = useRouter();
-
+  const context = useContext(AppContext);
   const [loading, setLoading] = useState(false);
 
   const api = constants.apiBaseUrl;
@@ -14,7 +14,6 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     setLoading(true);
-
     event.preventDefault();
 
     // Get data from the form.
@@ -29,7 +28,6 @@ export default function Login() {
     const endpoint = `${api}/auth/login`;
     const options = {
       method: "POST",
-      // Tell the server we're sending JSON.
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
@@ -41,27 +39,25 @@ export default function Login() {
     };
 
     const res = await fetch(endpoint, options);
-    // console.log("Res (post tweet)");    
-    console.log("Res (post tweet)", res);    
 
     if (res.ok) {
       const user = await res.json();
-      // console.log("Log In Info", user);
-      
+      console.log("Log In Info", user);
+
+      const jwtCookie = Cookies.get("token");
+      console.log("#### JwtCookie");
+      console.log("JwtCookie", jwtCookie);
+
       // Handle JWT
-      // FIXME: 
-      if (user.token) {
-        // localStorage.removeItem('token')
-          // setCookie("token", user.token);
-          // console.log("Token", user.token.token);
-          // localStorage.setItem('token', user.token.token);
-          router.push("/home");
-        }
-        
+      if (jwtCookie) {
+        console.log("## user", user.user);
+        context.setActiveUser(user.user);
+        router.push("/home");
+      }
     }
     event.target.username.value = "";
     event.target.password.value = "";
-    setLoading(false)
+    setLoading(false);
   };
 
   return (

@@ -5,14 +5,17 @@ export function middleware(req) {
   const pathname = req.nextUrl;
   const origin = pathname.origin;
 
-  // console.log("Pathname MW", pathname);
-  // console.log("Origin MW", origin);
-
   const token = req.cookies.get("token");
-  // console.log("token MW", token);
-  
-  const loginRoute = `${origin}/login`
-  const homeRoute = `${origin}/home`
+
+  // TODO: testing 
+  // console.log("Pathname", pathname);
+  // console.log("Origin", origin);
+  // console.log("*** token:", token);
+
+  const loginRoute = `${origin}/login`;
+  const homeRoute = `${origin}/home`;
+
+  console.log("pathname.href", pathname.href);
 
   // Middle ware routing failed -> Try implementing another time
   // if (!pathname.href.includes("/login") && !token) {
@@ -21,5 +24,5 @@ export function middleware(req) {
   // } else {
   //   console.log('b')
   //   return NextResponse.redirect(homeRoute);
-  // } 
+  // }
 }
