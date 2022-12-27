@@ -40,10 +40,14 @@ async function fetchData() {
 export default function Home() {
   const context = useContext(AppContext);
   const [tweets, setTweets] = useState();
+  const [user, setUser] = useState();
   
   useEffect(() => {
     fetchData().then((data) => {
-      setTweets(data);
+      console.log("Home (Data):", data)
+      const {user, tweets} = data
+      setUser(user.username);
+      setTweets(tweets);
     });
   }, []);
 
@@ -53,7 +57,7 @@ export default function Home() {
         <h1 className="font-mono text-xl font-bold">Welcome to Ugly Twitter</h1>
 
         {/* Place user component here*/}
-        <h2 className="font-mono text-md">{}</h2>
+        <h2 className="font-mono text-md">{user}</h2>
       </div>
       {/* <SearchBar></SearchBar> */}
       <NewPost></NewPost>
