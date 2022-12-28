@@ -1,17 +1,16 @@
+import ActiveUser from "./activeUser";
 import Sidebar from "./sidebar";
 
 export default function Layout({ children }) {
   return (
-    <div className="flex h-screen w-screen flex-row">
+    <div className="flex">
       {/* Navigation Bar */}
-      <div className="sticky top-0 flex h-screen flex-col justify-center bg-sky-400 sm:basis-1/6">
-        <Sidebar className="sticky top-0 h-screen"></Sidebar>
-      </div>
-
+      <aside className="sticky top-0 flex flex-col h-screen justify-center bg-sky-400 align-middle">
+        <Sidebar></Sidebar>
+        {/* <ActiveUser username={"User"}></ActiveUser>  */}
+      </aside>
       {/* Main Content */}
-      <div>
-        <main>{children}</main>
-      </div>
+      <main>{children}</main>
     </div>
   );
 }

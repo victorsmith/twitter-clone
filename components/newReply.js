@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import constants from "../constants/constants";
 
-export default function NewPost() {
+export default function NewReply({tweetID}) {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -23,9 +23,12 @@ export default function NewPost() {
 
     const jwt = Cookies.get("token");
     const api = constants.apiBaseUrl;
-    // console.log("ApiBaseUrl", api);
 
-    const endpoint = `${api}/tweets/`;
+    console.log("Reply Posting", api)
+    console.log("TweetID", tweetID)
+    console.log("JWT", jwt)
+
+    const endpoint = `${api}/replies/${tweetID}`;
     const options = {
       method: "POST",
       // Tell the server we're sending JSON.
@@ -37,12 +40,8 @@ export default function NewPost() {
         content: data.content,
       }),
     };
-
-    // Fetch all tweets
-    const res = await fetch(endpoint, options);
     
-    // Re-render the page
-    setLoading(false)
+    const res = await fetch(endpoint, options);
     event.target.tweet.value = "";
   };
 
@@ -52,7 +51,7 @@ export default function NewPost() {
         <input
           type="textarea"
           id="tweet"
-          placeholder="Input your tweet here..."
+          placeholder="Input your reply here..."
           name="tweet"
           required
           className="basis-5/6 px-4"
@@ -61,7 +60,7 @@ export default function NewPost() {
           type="submit"
           className="max-w-lg basis-1/6 rounded-lg bg-blue-500 p-2"
         >
-          Tweet
+          Reply
         </button>
       </form>
     </div>

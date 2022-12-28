@@ -7,6 +7,7 @@ export default function Index() {
   // const token  = localStorage.getItem('token', user.token);
   return (
     <Layout>
+
     </Layout>
   );
 }
