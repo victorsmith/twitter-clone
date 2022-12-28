@@ -1,7 +1,8 @@
 // Fetch most recent 100 tweets
 // Render them on the client side
 
-import Tweet from "./tweet";
+import Layout from "./layout";
+import Post from "./post";
 
 export default function Feed({ tweets }) {
 
@@ -14,7 +15,7 @@ export default function Feed({ tweets }) {
       {tweets &&
         tweets.map((tweet, i) => {
           console.log("");
-          return <Tweet key={i} tweet={tweet}></Tweet>;
+          return <Post key={i} tweet={tweet}></Post>;
         })}
     </>
   );
