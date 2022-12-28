@@ -7,7 +7,7 @@ export default function Layout({ children }) {
       {/* Navigation Bar */}
       <aside className="sticky top-0 flex flex-col h-screen justify-center bg-sky-400 align-middle">
         <Sidebar></Sidebar>
-        <ActiveUser username={"User"}></ActiveUser> 
+        {/* <ActiveUser username={"User"}></ActiveUser>  */}
       </aside>
       {/* Main Content */}
       <main>{children}</main>
