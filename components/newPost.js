@@ -40,6 +40,9 @@ export default function NewPost() {
 
     // Fetch all tweets
     const res = await fetch(endpoint, options);
+    
+    // Re-render the page
+    setLoading(false)
     event.target.tweet.value = "";
   };
 
