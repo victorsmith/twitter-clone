@@ -13,7 +13,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="flex flex-col align-center h-screen justify-center m-2">
+    <div className="flex flex-col align-center justify-center m-2">
       {navigationOptions.map((navOptionsItem, index) => (
         <SidebarItem key={index} navSection={navOptionsItem}></SidebarItem>
       ))}
