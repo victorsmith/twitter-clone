@@ -13,8 +13,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="align-center justify-center">
-      <h1>UglyTwitter</h1>
+    <div className="flex flex-col align-center h-screen justify-center m-2">
       {navigationOptions.map((navOptionsItem, index) => (
         <SidebarItem key={index} navSection={navOptionsItem}></SidebarItem>
       ))}
