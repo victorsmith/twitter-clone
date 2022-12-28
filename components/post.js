@@ -69,8 +69,6 @@ export default function Post({ tweet }) {
     router.push("/home");
   }
 
-  console.log("####### TWEEEEET", tweet);
-
   return (
     <>
       {tweet && (

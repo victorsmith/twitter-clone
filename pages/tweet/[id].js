@@ -2,8 +2,10 @@ import Post from "../../components/post";
 import Cookies from "js-cookie";
 import constants from "../../constants/constants";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Layout from "../../components/layout";
+import NewReply from "../../components/newReply";
+import ReplyFeed from "../../components/replyFeed";
 
 async function fetchTweetData(tweetID) {
   // TODO: Code Splitting
@@ -31,34 +33,35 @@ async function fetchTweetData(tweetID) {
 }
 
 export default function Tweet() {
+  const [tweetData, setTweetData] = useState();
   const router = useRouter();
   const { id } = router.query;
 
   console.log("## pid:", id);
   console.log("## router query", router.query);
 
-  const [postData, setPostData] = useState();
 
   useEffect(() => {
     fetchTweetData(id).then((tweet) => {
       console.log("## pid:", id);
       console.log("## Tweet Data JOJ:", tweet);
-      setPostData(tweet);
+
+      setTweetData(tweet);
     });
   }, [id]);
+
+  useEffect(() => {
+    // const hey = JSON.parse(tweetData)
+    console.log("## postData:", [tweetData]);
+  }, [tweetData]);
 
   return (
     <Layout>
       <div className="flex flex-col">
-        <Post tweet={postData}></Post>
-        <h4>Replies</h4>
-        {/* {postData.replies &&
-        postData.replies.map((reply) => {
-          <div className="flex flex-col justify-center bg-slate-300 p-3 align-middle">
-            <h3>{reply.author}</h3>
-            <h6>{reply.content}</h6>
-          </div>;
-        })} */}
+        <Post tweet={tweetData}></Post>
+        <NewReply tweetID={id}></NewReply>
+
+        { tweetData && <ReplyFeed replies={tweetData.replies}></ReplyFeed>}
       </div>
     </Layout>
   );
