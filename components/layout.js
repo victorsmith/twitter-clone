@@ -2,16 +2,13 @@ import Sidebar from "./sidebar";
 
 export default function Layout({ children }) {
   return (
-    <div className="flex h-screen w-screen flex-row">
+    <div className="flex">
       {/* Navigation Bar */}
-      <div className="sticky top-0 flex h-screen flex-col justify-center bg-sky-400 sm:basis-1/6">
-        <Sidebar className="sticky top-0 h-screen"></Sidebar>
-      </div>
-
+      <aside className="sticky top-0 h-screen bg-sky-400">
+        <Sidebar></Sidebar>
+      </aside>
       {/* Main Content */}
-      <div>
-        <main>{children}</main>
-      </div>
+      <main>{children}</main>
     </div>
   );
 }
